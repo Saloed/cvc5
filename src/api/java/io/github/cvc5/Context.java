@@ -21,14 +21,14 @@ import java.util.List;
 public class Context
 {
   // store pointers for terms, sorts, etc
-  private static List<AbstractPointer> abstractPointers = new ArrayList<>();
+//   private static List<AbstractPointer> abstractPointers = new ArrayList<>();
 
   static void addAbstractPointer(AbstractPointer pointer)
   {
-    if (!abstractPointers.contains(pointer))
-    {
-      abstractPointers.add(pointer);
-    }
+//     if (!abstractPointers.contains(pointer))
+//     {
+//       abstractPointers.add(pointer);
+//     }
   }
 
   /**
@@ -36,10 +36,10 @@ public class Context
    */
   public static void deletePointers()
   {
-    for (int i = abstractPointers.size() - 1; i >= 0; i--)
-    {
-      abstractPointers.get(i).deletePointer();
-    }
-    abstractPointers.clear();
+//     for (int i = abstractPointers.size() - 1; i >= 0; i--)
+//     {
+//       abstractPointers.get(i).deletePointer();
+//     }
+//     abstractPointers.clear();
   }
 }
