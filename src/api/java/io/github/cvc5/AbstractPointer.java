@@ -15,7 +15,7 @@
 
 package io.github.cvc5;
 
-abstract class AbstractPointer implements IPointer
+public abstract class AbstractPointer implements IPointer
 {
   protected long pointer;
 
