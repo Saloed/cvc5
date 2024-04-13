@@ -105,6 +105,7 @@ if(NOT CaDiCaL_FOUND_SYSTEM)
   # On macOS, we have to set `-isysroot` to make sure that include headers are
   # found because they are not necessarily installed at /usr/include anymore.
   if(CMAKE_OSX_SYSROOT)
+    string(APPEND CaDiCaL_CXXFLAGS " -mmacosx-version-min=11.1 ")
     string(APPEND CaDiCaL_CXXFLAGS " ${CMAKE_CXX_SYSROOT_FLAG} ${CMAKE_OSX_SYSROOT}")
   endif()
 

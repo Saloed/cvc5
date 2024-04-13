@@ -17,7 +17,7 @@
 
 # Set CMAKE_SYSTEM_NAME here. CMake only sets CMAKE_CROSSCOMPILING to
 # TRUE if CMAKE_SYSTEM_NAME is set _unconditionally_.
-set(CMAKE_SYSTEM_NAME ${CMAKE_HOST_SYSTEM_NAME})
+set(CMAKE_SYSTEM_NAME "Darwin")
 
 if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
 
