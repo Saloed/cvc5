@@ -3,7 +3,7 @@ export MACOSX_DEPLOYMENT_TARGET=11.1
 # Install JDK
 # Before install edit /usr/local/osxcross/bin/omp and disable verifyFileIntegrity function
 #omp install -v openjdk11
-#apt-get install openjdk-8-jdk
+#apt-get install openjdk-8-jdk python3-pip python3-venv
 
 python3 -m pip install tomli
 python3 -m pip install pyparsing
@@ -44,15 +44,18 @@ cd /mnt/mac-dist/lib
 llvm-install-name-tool-14 -id libpoly.0.1.13.dylib ./libpoly.0.1.13.dylib
 
 llvm-install-name-tool-14 -id libpolyxx.0.1.13.dylib ./libpolyxx.0.1.13.dylib
-llvm-install-name-tool-14 -change /mnt/mac-build/deps/src/Poly-EP-build/src/libpoly.0.dylib @rpath/libpoly.0.1.13.dylib ./libpolyxx.0.1.13.dylib
+llvm-install-name-tool-14 -change /mnt/mac-build/deps/src/Poly-EP-build/src/libpoly.0.dylib libpoly.0.1.13.dylib ./libpolyxx.0.1.13.dylib
 
 llvm-install-name-tool-14 -id libcvc5.1.dylib ./libcvc5.1.dylib
-llvm-install-name-tool-14 -change /mnt/mac-build/deps/src/Poly-EP-build/src/libpoly.0.dylib @rpath/libpoly.0.1.13.dylib ./libcvc5.1.dylib
-llvm-install-name-tool-14 -change /mnt/mac-build/deps/src/Poly-EP-build/src/libpolyxx.0.dylib @rpath/libpolyxx.0.1.13.dylib ./libcvc5.1.dylib
+llvm-install-name-tool-14 -change /mnt/mac-build/deps/src/Poly-EP-build/src/libpoly.0.dylib libpoly.0.1.13.dylib ./libcvc5.1.dylib
+llvm-install-name-tool-14 -change /mnt/mac-build/deps/src/Poly-EP-build/src/libpolyxx.0.dylib libpolyxx.0.1.13.dylib ./libcvc5.1.dylib
 
 llvm-install-name-tool-14 -id libcvc5parser.1.dylib ./libcvc5parser.1.dylib
+llvm-install-name-tool-14 -change @rpath/libcvc5.1.dylib libcvc5.1.dylib ./libcvc5parser.1.dylib
 
 llvm-install-name-tool-14 -id libcvc5jni.dylib ./libcvc5jni.dylib
+llvm-install-name-tool-14 -change @rpath/libcvc5.1.dylib libcvc5.1.dylib ./libcvc5jni.dylib
+llvm-install-name-tool-14 -change @rpath/libcvc5parser.1.dylib libcvc5parser.1.dylib ./libcvc5jni.dylib
 
 mkdir -p dist
 cp libpoly.0.1.13.dylib libpolyxx.0.1.13.dylib libcvc5.1.dylib libcvc5parser.1.dylib libcvc5jni.dylib dist/
