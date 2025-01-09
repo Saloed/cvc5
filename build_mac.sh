@@ -41,15 +41,6 @@ make install
 
 cd /mnt/mac-dist/lib
 
-llvm-install-name-tool-14 -id libpoly.0.1.13.dylib ./libpoly.0.1.13.dylib
-
-llvm-install-name-tool-14 -id libpolyxx.0.1.13.dylib ./libpolyxx.0.1.13.dylib
-llvm-install-name-tool-14 -change /mnt/mac-build/deps/src/Poly-EP-build/src/libpoly.0.dylib libpoly.0.1.13.dylib ./libpolyxx.0.1.13.dylib
-
-llvm-install-name-tool-14 -id libcvc5.1.dylib ./libcvc5.1.dylib
-llvm-install-name-tool-14 -change /mnt/mac-build/deps/src/Poly-EP-build/src/libpoly.0.dylib libpoly.0.1.13.dylib ./libcvc5.1.dylib
-llvm-install-name-tool-14 -change /mnt/mac-build/deps/src/Poly-EP-build/src/libpolyxx.0.dylib libpolyxx.0.1.13.dylib ./libcvc5.1.dylib
-
 llvm-install-name-tool-14 -id libcvc5parser.1.dylib ./libcvc5parser.1.dylib
 llvm-install-name-tool-14 -change @rpath/libcvc5.1.dylib libcvc5.1.dylib ./libcvc5parser.1.dylib
 
@@ -58,4 +49,4 @@ llvm-install-name-tool-14 -change @rpath/libcvc5.1.dylib libcvc5.1.dylib ./libcv
 llvm-install-name-tool-14 -change @rpath/libcvc5parser.1.dylib libcvc5parser.1.dylib ./libcvc5jni.dylib
 
 mkdir -p dist
-cp libpoly.0.1.13.dylib libpolyxx.0.1.13.dylib libcvc5.1.dylib libcvc5parser.1.dylib libcvc5jni.dylib dist/
+cp libcvc5.1.dylib libcvc5parser.1.dylib libcvc5jni.dylib dist/
