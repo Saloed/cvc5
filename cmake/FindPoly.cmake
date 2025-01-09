@@ -75,46 +75,46 @@ if(NOT Poly_FOUND_SYSTEM)
 
   set(Poly_INCLUDE_DIR "${DEPS_BASE}/include/")
 
-  if(BUILD_SHARED_LIBS)
-    set(POLY_BUILD_STATIC OFF)
-    set(POLY_TARGETS poly polyxx)
-    set(POLY_INSTALL_CMD
-      INSTALL_COMMAND 
-        ${CMAKE_MAKE_PROGRAM} install ${POLY_TARGETS}
-    )
-
-    if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
-      set(POLY_BYPRODUCTS
-        <INSTALL_DIR>/lib/libpoly.0${CMAKE_SHARED_LIBRARY_SUFFIX}
-        <INSTALL_DIR>/lib/libpoly.${Poly_VERSION}${CMAKE_SHARED_LIBRARY_SUFFIX}
-        <INSTALL_DIR>/lib/libpolyxx.0${CMAKE_SHARED_LIBRARY_SUFFIX}
-        <INSTALL_DIR>/lib/libpolyxx.${Poly_VERSION}${CMAKE_SHARED_LIBRARY_SUFFIX}
-        <INSTALL_DIR>/lib/libpoly${CMAKE_SHARED_LIBRARY_SUFFIX}
-        <INSTALL_DIR>/lib/libpolyxx${CMAKE_SHARED_LIBRARY_SUFFIX}
-      )
-      set(Poly_LIBRARIES "${DEPS_BASE}/lib/libpoly${CMAKE_SHARED_LIBRARY_SUFFIX}")
-      set(PolyXX_LIBRARIES "${DEPS_BASE}/lib/libpolyxx${CMAKE_SHARED_LIBRARY_SUFFIX}")
-    elseif(CMAKE_SYSTEM_NAME STREQUAL "Windows")
-      # For Windows builds, LibPoly installs the .dlls to the bin directory
-      set(POLY_BYPRODUCTS
-        <INSTALL_DIR>/bin/libpoly${CMAKE_SHARED_LIBRARY_SUFFIX}
-        <INSTALL_DIR>/bin/libpolyxx${CMAKE_SHARED_LIBRARY_SUFFIX}
-      )
-      set(Poly_LIBRARIES "${DEPS_BASE}/bin/libpoly${CMAKE_SHARED_LIBRARY_SUFFIX}")
-      set(PolyXX_LIBRARIES "${DEPS_BASE}/bin/libpolyxx${CMAKE_SHARED_LIBRARY_SUFFIX}")
-    else()
-      set(POLY_BYPRODUCTS
-        <INSTALL_DIR>/lib/libpoly${CMAKE_SHARED_LIBRARY_SUFFIX}.0
-        <INSTALL_DIR>/lib/libpoly${CMAKE_SHARED_LIBRARY_SUFFIX}.${Poly_VERSION}
-        <INSTALL_DIR>/lib/libpolyxx${CMAKE_SHARED_LIBRARY_SUFFIX}.0
-        <INSTALL_DIR>/lib/libpolyxx${CMAKE_SHARED_LIBRARY_SUFFIX}.${Poly_VERSION}
-        <INSTALL_DIR>/lib/libpoly${CMAKE_SHARED_LIBRARY_SUFFIX}
-        <INSTALL_DIR>/lib/libpolyxx${CMAKE_SHARED_LIBRARY_SUFFIX}
-      )
-      set(Poly_LIBRARIES "${DEPS_BASE}/lib/libpoly${CMAKE_SHARED_LIBRARY_SUFFIX}")
-      set(PolyXX_LIBRARIES "${DEPS_BASE}/lib/libpolyxx${CMAKE_SHARED_LIBRARY_SUFFIX}")
-    endif()
-  else()
+#  if(BUILD_SHARED_LIBS)
+#    set(POLY_BUILD_STATIC OFF)
+#    set(POLY_TARGETS poly polyxx)
+#    set(POLY_INSTALL_CMD
+#      INSTALL_COMMAND
+#        ${CMAKE_MAKE_PROGRAM} install ${POLY_TARGETS}
+#    )
+#
+#    if(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+#      set(POLY_BYPRODUCTS
+#        <INSTALL_DIR>/lib/libpoly.0${CMAKE_SHARED_LIBRARY_SUFFIX}
+#        <INSTALL_DIR>/lib/libpoly.${Poly_VERSION}${CMAKE_SHARED_LIBRARY_SUFFIX}
+#        <INSTALL_DIR>/lib/libpolyxx.0${CMAKE_SHARED_LIBRARY_SUFFIX}
+#        <INSTALL_DIR>/lib/libpolyxx.${Poly_VERSION}${CMAKE_SHARED_LIBRARY_SUFFIX}
+#        <INSTALL_DIR>/lib/libpoly${CMAKE_SHARED_LIBRARY_SUFFIX}
+#        <INSTALL_DIR>/lib/libpolyxx${CMAKE_SHARED_LIBRARY_SUFFIX}
+#      )
+#      set(Poly_LIBRARIES "${DEPS_BASE}/lib/libpoly${CMAKE_SHARED_LIBRARY_SUFFIX}")
+#      set(PolyXX_LIBRARIES "${DEPS_BASE}/lib/libpolyxx${CMAKE_SHARED_LIBRARY_SUFFIX}")
+#    elseif(CMAKE_SYSTEM_NAME STREQUAL "Windows")
+#      # For Windows builds, LibPoly installs the .dlls to the bin directory
+#      set(POLY_BYPRODUCTS
+#        <INSTALL_DIR>/bin/libpoly${CMAKE_SHARED_LIBRARY_SUFFIX}
+#        <INSTALL_DIR>/bin/libpolyxx${CMAKE_SHARED_LIBRARY_SUFFIX}
+#      )
+#      set(Poly_LIBRARIES "${DEPS_BASE}/bin/libpoly${CMAKE_SHARED_LIBRARY_SUFFIX}")
+#      set(PolyXX_LIBRARIES "${DEPS_BASE}/bin/libpolyxx${CMAKE_SHARED_LIBRARY_SUFFIX}")
+#    else()
+#      set(POLY_BYPRODUCTS
+#        <INSTALL_DIR>/lib/libpoly${CMAKE_SHARED_LIBRARY_SUFFIX}.0
+#        <INSTALL_DIR>/lib/libpoly${CMAKE_SHARED_LIBRARY_SUFFIX}.${Poly_VERSION}
+#        <INSTALL_DIR>/lib/libpolyxx${CMAKE_SHARED_LIBRARY_SUFFIX}.0
+#        <INSTALL_DIR>/lib/libpolyxx${CMAKE_SHARED_LIBRARY_SUFFIX}.${Poly_VERSION}
+#        <INSTALL_DIR>/lib/libpoly${CMAKE_SHARED_LIBRARY_SUFFIX}
+#        <INSTALL_DIR>/lib/libpolyxx${CMAKE_SHARED_LIBRARY_SUFFIX}
+#      )
+#      set(Poly_LIBRARIES "${DEPS_BASE}/lib/libpoly${CMAKE_SHARED_LIBRARY_SUFFIX}")
+#      set(PolyXX_LIBRARIES "${DEPS_BASE}/lib/libpolyxx${CMAKE_SHARED_LIBRARY_SUFFIX}")
+#    endif()
+#  else()
     # For static builds, we only build and install the `static_pic_poly` and
     # `static_pic_polyxx` targets. We pass the full path of GMP to LibPoly
     # below. If we are building a static version of cvc5, it is the static
@@ -153,7 +153,7 @@ if(NOT Poly_FOUND_SYSTEM)
       "${DEPS_BASE}/lib/libpicpoly${CMAKE_STATIC_LIBRARY_SUFFIX}")
     set(PolyXX_LIBRARIES
       "${DEPS_BASE}/lib/libpicpolyxx${CMAKE_STATIC_LIBRARY_SUFFIX}")
-  endif()
+#  endif()
 
   # We pass the full path of GMP to LibPoly, s.t. we can ensure that LibPoly is
   # able to find the correct version of GMP if we built it locally. This is
