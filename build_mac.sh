@@ -25,6 +25,7 @@ export LDFLAGS="-L$GMP_ROOT/lib"
     --arm64 --prefix=/mnt/mac-dist --name=mac-build \
     -DCMAKE_SYSTEM_NAME="Darwin" \
     -DCMAKE_OSX_SYSROOT="$SYS_ROOT" \
+    -DCMAKE_OSX_ARCHITECTURES="arm64" \
     -DJava_JAVA_EXECUTABLE="$JAVA_EXEC_HOME/bin/java" \
     -DJava_JAVAC_EXECUTABLE="$JAVA_EXEC_HOME/bin/javac" \
     -DJava_JAR_EXECUTABLE="$JAVA_EXEC_HOME/bin/jar" \
@@ -40,6 +41,8 @@ make -j10
 make install
 
 cd /mnt/mac-dist/lib
+
+llvm-install-name-tool-14 -id libcvc5.1.dylib ./libcvc5.1.dylib
 
 llvm-install-name-tool-14 -id libcvc5parser.1.dylib ./libcvc5parser.1.dylib
 llvm-install-name-tool-14 -change @rpath/libcvc5.1.dylib libcvc5.1.dylib ./libcvc5parser.1.dylib
